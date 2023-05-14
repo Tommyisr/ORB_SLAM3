@@ -41,6 +41,10 @@ int main(int argc, char **argv)
     }
 
     const int num_seq = (argc-3)/2;
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("Current working dir: %s\n", cwd);}
+
     cout << "num_seq = " << num_seq << endl;
     bool bFileName= (((argc-3) % 2) == 1);
     string file_name;
@@ -48,7 +52,10 @@ int main(int argc, char **argv)
     {
         file_name = string(argv[argc-1]);
         cout << "file name: " << file_name << endl;
+        cout << "Test0"  << "..." << endl;
+
     }
+    cout << "Test1"  << "..." << endl;
 
     // Load all sequences:
     int seq;
@@ -56,6 +63,8 @@ int main(int argc, char **argv)
     vector< vector<string> > vstrImageRight;
     vector< vector<double> > vTimestampsCam;
     vector<int> nImages;
+
+    cout << "Test2 " << seq << "..." << endl;
 
     vstrImageLeft.resize(num_seq);
     vstrImageRight.resize(num_seq);
@@ -65,11 +74,12 @@ int main(int argc, char **argv)
     int tot_images = 0;
     for (seq = 0; seq<num_seq; seq++)
     {
-        cout << "Loading images for sequence " << seq << "...";
+        cout << "Loading images for sequence " << seq << "..." << endl;
 
         string pathSeq(argv[(2*seq) + 3]);
         string pathTimeStamps(argv[(2*seq) + 4]);
 
+        cout << pathTimeStamps << endl;
         string pathCam0 = pathSeq + "/mav0/cam0/data";
         string pathCam1 = pathSeq + "/mav0/cam1/data";
 
@@ -189,18 +199,23 @@ void LoadImages(const string &strPathLeft, const string &strPathRight, const str
                 vector<string> &vstrImageLeft, vector<string> &vstrImageRight, vector<double> &vTimeStamps)
 {
     ifstream fTimes;
+    cout << strPathTimes << endl;
     fTimes.open(strPathTimes.c_str());
+
     vTimeStamps.reserve(5000);
     vstrImageLeft.reserve(5000);
     vstrImageRight.reserve(5000);
     while(!fTimes.eof())
     {
+//        cout << "loop test" << endl;
         string s;
         getline(fTimes,s);
+
         if(!s.empty())
         {
             stringstream ss;
             ss << s;
+
             vstrImageLeft.push_back(strPathLeft + "/" + ss.str() + ".png");
             vstrImageRight.push_back(strPathRight + "/" + ss.str() + ".png");
             double t;

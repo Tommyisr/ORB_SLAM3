@@ -49,7 +49,8 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     "ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza." << endl <<
     "This program comes with ABSOLUTELY NO WARRANTY;" << endl  <<
     "This is free software, and you are welcome to redistribute it" << endl <<
-    "under certain conditions. See LICENSE.txt." << endl << endl;
+    "under certain conditions. See LICENSE.txt." << endl << 
+    "TEST ASD TEST" << endl;
 
     cout << "Input sensor was set to: ";
 
