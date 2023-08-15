@@ -7,25 +7,26 @@ ENDIF()
 
 MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 
+
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall   -O3")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
 
-# Check C++14 or C++0x support
+# Check C++17 or C++0x support
 include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++14" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++17" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 if(COMPILER_SUPPORTS_CXX11)
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
    add_definitions(-DCOMPILEDWITHC11)
-   message(STATUS "Using flag -std=c++14.")
+   message(STATUS "Using flag -std=c++17.")
 elseif(COMPILER_SUPPORTS_CXX0X)
    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
    add_definitions(-DCOMPILEDWITHC0X)
    message(STATUS "Using flag -std=c++0x.")
 else()
-   message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++14 support. Please use a different C++ compiler.")
+   message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++17 support. Please use a different C++ compiler.")
 endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
@@ -40,6 +41,7 @@ MESSAGE(${OpenCV_VERSION})
 
 find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
+find_package(fmt REQUIRED)
 #find_package(realsense2)
 
 include_directories(
@@ -113,14 +115,36 @@ include/SerializationUtils.h
 include/Config.h
 include/Settings.h)
 
-add_subdirectory(Thirdparty/g2o)
+#add_subdirectory(Thirdparty/g2o/)
+include_directories(Thirdparty/g2o/)
+
 
 target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS}
 ${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
-${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
+        #g2o
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_core.so
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_stuff.so
+
+
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_cholmod.so
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_dense.so
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_pcg.so
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_eigen.so
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_csparse.so
+
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_sba.so
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_sim3.so
+
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_data.so
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_icp.so
+${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_slam3d.so
+
+
+
+
 -lboost_serialization
 -lcrypto
 )
@@ -164,13 +188,15 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 #Stereo examples
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Stereo)
 
-#add_executable(stereo_kitti
-#        Examples/Stereo/stereo_kitti.cc)
-#target_link_libraries(stereo_kitti ${PROJECT_NAME})
+add_executable(stereo_kitti
+        Examples/Stereo/stereo_kitti.cc)
+target_link_libraries(stereo_kitti ${PROJECT_NAME}
+        fmt::fmt)
 
 add_executable(stereo_euroc
         Examples/Stereo/stereo_euroc.cc)
-target_link_libraries(stereo_euroc ${PROJECT_NAME})
+target_link_libraries(stereo_euroc ${PROJECT_NAME}
+        fmt::fmt)
 
 #add_executable(stereo_tum_vi
 #        Examples/Stereo/stereo_tum_vi.cc)
@@ -304,9 +330,10 @@ target_link_libraries(stereo_euroc ${PROJECT_NAME})
 #        Examples_old/Stereo/stereo_euroc.cc)
 #target_link_libraries(stereo_euroc_old ${PROJECT_NAME})
 
-#add_executable(stereo_tum_vi_old
-#        Examples_old/Stereo/stereo_tum_vi.cc)
-#target_link_libraries(stereo_tum_vi_old ${PROJECT_NAME})
+add_executable(stereo_tum_vi
+        Examples/Stereo/stereo_tum_vi.cc)
+target_link_libraries(stereo_tum_vi ${PROJECT_NAME}
+        fmt::fmt)
 
 #if(realsense2_FOUND)
 #    add_executable(stereo_realsense_t265_old
