@@ -29,6 +29,7 @@ Examples/Stereo/stereo_kitti
 Examples/Stereo/stereo_tum_vi
 Examples/Stereo/stereo_realsense_t265
 Examples/Stereo/stereo_realsense_D435i
+Examples/Stereo/debug.txt
 
 Examples/Monocular-Inertial/mono_inertial_euroc
 Examples/Monocular-Inertial/mono_inertial_tum_vi
@@ -66,6 +67,7 @@ Thirdparty/DBoW2/lib/
 Thirdparty/g2o/build/
 Thirdparty/g2o/config.h
 Thirdparty/g2o/lib/
+Thirdparty/g2o/
 Vocabulary/ORBvoc.txt
 build/
 
@@ -74,6 +76,7 @@ lib/
 cmake_modules/
 cmake-build-debug/
 
+euroc_examples.sh
 ExecMean.txt
 SessionInfo.txt
 Results_Euroc.txt
