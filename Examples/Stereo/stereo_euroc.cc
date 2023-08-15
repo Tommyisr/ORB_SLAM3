@@ -45,17 +45,15 @@ int main(int argc, char **argv)
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
         printf("Current working dir: %s\n", cwd);}
 
-    cout << "num_seq = " << num_seq << endl;
     bool bFileName= (((argc-3) % 2) == 1);
     string file_name;
     if (bFileName)
     {
         file_name = string(argv[argc-1]);
         cout << "file name: " << file_name << endl;
-        cout << "Test0"  << "..." << endl;
+        cout << "Test00"  << "..." << endl;
 
     }
-    cout << "Test1"  << "..." << endl;
 
     // Load all sequences:
     int seq;
@@ -181,15 +179,15 @@ int main(int argc, char **argv)
     // Save camera trajectory
     if (bFileName)
     {
-        const string kf_file =  "kf_" + string(argv[argc-1]) + ".txt";
-        const string f_file =  "f_" + string(argv[argc-1]) + ".txt";
+        const string kf_file =  "acc_results/kf_" + string(argv[argc-1]) + ".txt";
+        const string f_file =  "acc_results/f_" + string(argv[argc-1]) + ".txt";
         SLAM.SaveTrajectoryEuRoC(f_file);
         SLAM.SaveKeyFrameTrajectoryEuRoC(kf_file);
     }
     else
     {
-        SLAM.SaveTrajectoryEuRoC("CameraTrajectory.txt");
-        SLAM.SaveKeyFrameTrajectoryEuRoC("KeyFrameTrajectory.txt");
+        SLAM.SaveTrajectoryEuRoC("acc_results/CameraTrajectory.txt");
+        SLAM.SaveKeyFrameTrajectoryEuRoC("acc_results/KeyFrameTrajectory.txt");
     }
 
     return 0;
