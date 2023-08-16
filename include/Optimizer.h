@@ -38,6 +38,7 @@
 #include "Thirdparty/g2o/g2o/core/robust_kernel_impl.h"
 #include "Thirdparty/g2o/g2o/solvers/dense/linear_solver_dense.h"
 #include "Thirdparty/g2o/g2o/solvers/pcg/linear_solver_pcg.h"
+#include "Thirdparty/g2o/g2o/solvers/csparse/linear_solver_csparse.h"
 
 namespace ORB_SLAM3
 {

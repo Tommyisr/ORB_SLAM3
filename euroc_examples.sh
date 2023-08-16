@@ -1,10 +1,10 @@
 !/bin/bash
 
-pathDatasetEuroc='/home/worm/Univ/Lab/ORB_SLAM3/Datasets' #Example, it is necesary to change it by the dataset path
+pathDatasetEuroc='/home/worm/Univ/Datasets' #Example, it is necesary to change it by the dataset path
 
 
 
-echo "Launching MH03 with Stereo sensor"
-./Examples/Stereo/stereo_euroc ./Vocabulary/ORBvoc.txt ./Examples/Stereo/EuRoC.yaml "$pathDatasetEuroc"/MH_03_medium ./Examples/Stereo/EuRoC_TimeStamps/MH03.txt dataset-MH03_stereo
+echo "Launching MH04 with Mono sensor"
+./Examples/Monocular/mono_euroc ./Vocabulary/ORBvoc.txt ./Examples/Monocular/EuRoC.yaml "$pathDatasetEuroc"/MH_04 ./Examples/Monocular/EuRoC_TimeStamps/MH04.txt dataset-MH04_mono_eigen
 
 
