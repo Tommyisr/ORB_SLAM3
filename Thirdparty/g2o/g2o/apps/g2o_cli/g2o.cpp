@@ -35,7 +35,7 @@
 #include <string>
 
 #include "dl_wrapper.h"
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/core/batch_stats.h"
 #include "g2o/core/estimate_propagator.h"
 #include "g2o/core/factory.h"

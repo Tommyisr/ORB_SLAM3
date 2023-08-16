@@ -31,7 +31,7 @@
 #include <memory>
 
 #include "dynamic_aligned_buffer.hpp"
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "linear_solver.h"
 #include "openmp_mutex.h"
 #include "solver.h"

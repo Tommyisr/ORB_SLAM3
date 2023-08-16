@@ -27,7 +27,7 @@
 #ifndef G2O_LOGGER_H
 #define G2O_LOGGER_H
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 
 #ifdef G2O_HAVE_LOGGING
 #include <spdlog/spdlog.h>

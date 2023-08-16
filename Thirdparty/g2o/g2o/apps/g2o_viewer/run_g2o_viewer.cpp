@@ -22,7 +22,7 @@
 #include <QThread>
 
 #include "g2o/apps/g2o_cli/dl_wrapper.h"
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/core/factory.h"
 #include "g2o/core/hyper_graph_action.h"
 #include "g2o/core/optimization_algorithm_factory.h"

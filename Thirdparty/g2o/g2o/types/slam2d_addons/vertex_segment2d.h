@@ -29,7 +29,7 @@
 
 #include <Eigen/Core>
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/core/base_vertex.h"
 #include "g2o/core/hyper_graph_action.h"
 #include "g2o_types_slam2d_addons_api.h"

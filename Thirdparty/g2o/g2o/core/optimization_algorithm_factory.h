@@ -31,7 +31,7 @@
 #include <list>
 #include <memory>
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/stuff/misc.h"  // ForceLinker for the macros
 #include "g2o_core_api.h"
 #include "optimization_algorithm_property.h"

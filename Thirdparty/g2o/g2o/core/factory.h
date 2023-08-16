@@ -33,7 +33,7 @@
 #include <string>
 
 #include "creators.h"
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/stuff/misc.h"  // ForceLinker for the macros
 #include "hyper_graph.h"
 

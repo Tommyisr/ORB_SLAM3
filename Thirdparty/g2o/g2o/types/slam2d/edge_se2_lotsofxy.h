@@ -27,7 +27,7 @@
 #ifndef G2O_EDGE_SE2_LOTSOF_XY
 #define G2O_EDGE_SE2_LOTSOF_XY
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/core/base_variable_sized_edge.h"
 #include "g2o_types_slam2d_api.h"
 #include "vertex_point_xy.h"

@@ -30,7 +30,7 @@
 #include <Eigen/Core>
 #include <vector>
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "matrix_operations.h"
 
 namespace g2o {

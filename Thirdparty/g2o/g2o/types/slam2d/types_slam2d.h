@@ -39,7 +39,7 @@
 #include "edge_se2_twopointsxy.h"
 #include "edge_se2_xyprior.h"
 #include "edge_xy_prior.h"
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "parameter_se2_offset.h"
 #include "vertex_point_xy.h"
 #include "vertex_se2.h"

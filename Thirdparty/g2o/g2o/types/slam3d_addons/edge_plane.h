@@ -27,7 +27,7 @@
 #ifndef G2O_EDGE_PLANE3D_H
 #define G2O_EDGE_PLANE3D_H
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/core/base_binary_edge.h"
 #include "g2o_types_slam3d_addons_api.h"
 #include "vertex_plane.h"

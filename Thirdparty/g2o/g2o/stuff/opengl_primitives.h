@@ -26,7 +26,7 @@
  * \brief draw primitives with OpenGL
  */
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "opengl_wrapper.h"
 
 #ifdef _MSC_VER

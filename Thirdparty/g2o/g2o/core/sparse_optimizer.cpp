@@ -35,7 +35,7 @@
 
 #include "batch_stats.h"
 #include "estimate_propagator.h"
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/core/optimizable_graph.h"
 #include "g2o/core/ownership.h"
 #include "g2o/stuff/logger.h"

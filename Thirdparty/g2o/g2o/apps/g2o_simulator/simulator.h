@@ -31,7 +31,7 @@
 #include <set>
 #include <string>
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/stuff/sampler.h"
 #include "g2o/types/slam3d/types_slam3d.h"
 #include "g2o_simulator_api.h"

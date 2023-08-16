@@ -27,7 +27,7 @@
 #ifndef G2O_OPENGL_WRAPPER_H
 #define G2O_OPENGL_WRAPPER_H
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 
 #ifdef WINDOWS
 #include <windows.h>

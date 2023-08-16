@@ -36,7 +36,7 @@
 #include <memory>
 #include <vector>
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "g2o/stuff/misc.h"
 #include "g2o/stuff/sparse_helper.h"
 #include "matrix_operations.h"

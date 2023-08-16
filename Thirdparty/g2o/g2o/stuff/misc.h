@@ -30,7 +30,7 @@
 #include <cmath>
 #include <memory>
 
-#include "build/g2o/config.h"
+#include "g2o/config.h"
 #include "macros.h"
 
 /** @addtogroup utils **/
