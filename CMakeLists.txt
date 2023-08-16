@@ -21,9 +21,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
 
 # Check C++17 or C++0x support
 include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++17" COMPILER_SUPPORTS_CXX17)
+CHECK_CXX_COMPILER_FLAG("-std=c++14" COMPILER_SUPPORTS_CXX14)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
-if(COMPILER_SUPPORTS_CXX17)
+if(COMPILER_SUPPORTS_CXX14)
    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
    add_definitions(-DCOMPILEDWITHC11)
    message(STATUS "Using flag -std=c++17.")
@@ -131,23 +131,63 @@ target_link_libraries(${PROJECT_NAME}
         ${Pangolin_LIBRARIES}
         ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
         #g2o
+
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_core.so
+
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_csparse_extension.so
+
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_ext_freeglut_minimal.so
+
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_hierarchical.so
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_incremental.so
+
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_interactive.so
+
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_interface.so
+
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_opengl_helper.so
+
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_parser.so
+
+
+
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_stuff.so
 
 
+
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_cholmod.so
+
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_dense.so
+
+
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_pcg.so
+
+
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_eigen.so
+
+
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_solver_csparse.so
 
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_sba.so
+
+
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_sim3.so
 
-        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_data.so
-        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_icp.so
-        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_slam3d.so
 
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_data.so
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_icp.so
+
+
+        ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/build/lib/libg2o_types_slam3d.so
 
 
 
@@ -225,9 +265,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Monocular)
 #        Examples/Monocular/mono_tum.cc)
 #target_link_libraries(mono_tum ${PROJECT_NAME})
 
-#add_executable(mono_kitti
-#        Examples/Monocular/mono_kitti.cc)
-#target_link_libraries(mono_kitti ${PROJECT_NAME})
+add_executable(mono_kitti
+        Examples/Monocular/mono_kitti.cc)
+target_link_libraries(mono_kitti ${PROJECT_NAME}
+fmt::fmt)
 
 add_executable(mono_euroc
         Examples/Monocular/mono_euroc.cc)
