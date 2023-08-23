@@ -39,6 +39,7 @@
 #include "Thirdparty/g2o/g2o/solvers/dense/linear_solver_dense.h"
 #include "Thirdparty/g2o/g2o/solvers/pcg/linear_solver_pcg.h"
 #include "Thirdparty/g2o/g2o/solvers/csparse/linear_solver_csparse.h"
+#include "Thirdparty/g2o/g2o/solvers/cholmod/linear_solver_cholmod.h"
 
 namespace ORB_SLAM3
 {

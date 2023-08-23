@@ -32,13 +32,15 @@ void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps);
 
 int main(int argc, char **argv)
-{
+{	
+std::cout << "test1" << std::endl;
     if(argc != 4)
     {
         cerr << endl << "Usage: ./mono_kitti path_to_vocabulary path_to_settings path_to_sequence" << endl;
         return 1;
     }
-
+    
+	std::cout << "test2" << std::endl;
     // Retrieve paths to images
     vector<string> vstrImageFilenames;
     vector<double> vTimestamps;

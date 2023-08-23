@@ -76,8 +76,11 @@ namespace ORB_SLAM3
         g2o::BlockSolver_6_3 * solver_ptr = new g2o::BlockSolver_6_3(std::move(linearSolver));
 // Create optimization algorithm
         g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(std::unique_ptr<g2o::BlockSolver_6_3> (solver_ptr));
+        
         optimizer.setAlgorithm(solver);
         optimizer.setVerbose(false);
+
+
 
         if(pbStopFlag){
             optimizer.setForceStopFlag(pbStopFlag);
@@ -1211,7 +1214,7 @@ namespace ORB_SLAM3
         g2o::SparseOptimizer optimizer;
 
 // Create linear solver
-        g2o::BlockSolver_6_3::LinearSolverType* linearSolver_raw = new g2o::LinearSolverPCG<g2o::BlockSolver_6_3::PoseMatrixType>();
+        g2o::BlockSolver_6_3::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolver_6_3::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolver_6_3::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolver_6_3 * solver_ptr = new g2o::BlockSolver_6_3(std::move(linearSolver));
@@ -1353,7 +1356,7 @@ namespace ORB_SLAM3
                         const float &invSigma2 = pKFi->mvInvLevelSigma2[kpUn.octave];
                         e->setInformation(Eigen::Matrix2d::Identity()*invSigma2);
 
-                        g2o::RobustKernelCauchy* rk = new g2o::RobustKernelCauchy;
+                        g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
                         e->setRobustKernel(rk);
                         rk->setDelta(thHuberMono);
 
@@ -1384,8 +1387,8 @@ namespace ORB_SLAM3
                         Eigen::Matrix3d Info = Eigen::Matrix3d::Identity()*invSigma2;
                         e->setInformation(Info);
 
-//                    g2o::RobustKernelCauchy* rk = new g2o::RobustKernelCauchy;
-                        g2o::RobustKernelTukey* rk = new g2o::RobustKernelTukey;
+                    g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
+//                        g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
 
                         e->setRobustKernel(rk);
                         rk->setDelta(thHuberStereo);
@@ -1424,7 +1427,7 @@ namespace ORB_SLAM3
                             const float &invSigma2 = pKFi->mvInvLevelSigma2[kp.octave];
                             e->setInformation(Eigen::Matrix2d::Identity()*invSigma2);
 
-                            g2o::RobustKernelCauchy* rk = new g2o::RobustKernelCauchy;
+                            g2o::RobustKernelHuber* rk = new g2o::RobustKernelHuber;
                             e->setRobustKernel(rk);
                             rk->setDelta(thHuberMono);
 
@@ -1564,7 +1567,7 @@ namespace ORB_SLAM3
         g2o::SparseOptimizer optimizer;
         optimizer.setVerbose(false);
         // Create linear solver
-        g2o::BlockSolver_7_3::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolver_7_3::PoseMatrixType>();
+        g2o::BlockSolver_7_3::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolver_7_3::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolver_7_3::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolver_7_3 * solver_ptr = new g2o::BlockSolver_7_3(std::move(linearSolver));
@@ -1867,7 +1870,7 @@ namespace ORB_SLAM3
         g2o::SparseOptimizer optimizer;
         optimizer.setVerbose(false);
         // Create linear solver
-        g2o::BlockSolver_7_3::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolver_7_3::PoseMatrixType>();
+        g2o::BlockSolver_7_3::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolver_7_3::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolver_7_3::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolver_7_3 * solver_ptr = new g2o::BlockSolver_7_3(std::move(linearSolver));
@@ -2201,7 +2204,7 @@ namespace ORB_SLAM3
 
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverDense<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
@@ -2596,7 +2599,7 @@ namespace ORB_SLAM3
         // Setup optimizer
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
@@ -3146,7 +3149,7 @@ namespace ORB_SLAM3
         // Setup optimizer
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
@@ -3332,7 +3335,7 @@ namespace ORB_SLAM3
         // Setup optimizer
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
@@ -3496,7 +3499,7 @@ namespace ORB_SLAM3
         // Setup optimizer
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
@@ -3607,7 +3610,7 @@ namespace ORB_SLAM3
 
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolver_6_3::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolver_6_3::PoseMatrixType>();
+        g2o::BlockSolver_6_3::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolver_6_3::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolver_6_3::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolver_6_3 * solver_ptr = new g2o::BlockSolver_6_3(std::move(linearSolver));
@@ -4210,7 +4213,7 @@ namespace ORB_SLAM3
 
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
@@ -4623,7 +4626,7 @@ namespace ORB_SLAM3
     {
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverDense<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
@@ -5013,7 +5016,7 @@ namespace ORB_SLAM3
     {
         g2o::SparseOptimizer optimizer;
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverDense<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
@@ -5441,7 +5444,7 @@ namespace ORB_SLAM3
         g2o::SparseOptimizer optimizer;
         optimizer.setVerbose(false);
         // Create linear solver
-        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>();
+        g2o::BlockSolverX::LinearSolverType* linearSolver_raw = new g2o::LinearSolverCSparse<g2o::BlockSolverX::PoseMatrixType>();
         std::unique_ptr<g2o::BlockSolverX::LinearSolverType> linearSolver(linearSolver_raw);
 // Create block solver
         g2o::BlockSolverX * solver_ptr = new g2o::BlockSolverX(std::move(linearSolver));
